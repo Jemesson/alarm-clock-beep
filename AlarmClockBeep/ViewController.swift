@@ -66,7 +66,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
     // MARK - Helper methods
 
-    func setClockImageOrientationChanged() {
+    private func setClockImageOrientationChanged() {
         let orientation = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.windowScene?.interfaceOrientation
 
         if orientation == .portrait {
@@ -76,11 +76,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
 
-    func startAlarmTimer() {
+    private func startAlarmTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(performAlarmClock), userInfo: nil, repeats: true)
     }
 
-    func stopAlarmTimer() {
+    private func stopAlarmTimer() {
         timer?.invalidate()
         timer = nil
     }
@@ -106,7 +106,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         picker.isHidden = false
     }
     
-    func toggleisAlarmRunning() {
+    private func toggleisAlarmRunning() {
         isAlarmRunning = !isAlarmRunning
     }
 
