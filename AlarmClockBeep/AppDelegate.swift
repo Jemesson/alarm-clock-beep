@@ -15,31 +15,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "AlarmClockBeep")
+        let identifier = NSPersistentContainer(name: "AlarmClockBeep")
 
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        identifier.loadPersistentStores(completionHandler: { (_ , error) in
             if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                fatalError("Error: (\(error), \(error.userInfo))")
             }
         })
 
-        return container
+        return identifier
     }()
 
     func saveContext () {
         let context = persistentContainer.viewContext
+
         if context.hasChanges {
             do {
                 try context.save()
             } catch {
                 let error = error as NSError
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                fatalError("Error: (\(error), \(error.userInfo))")
             }
         }
     }
